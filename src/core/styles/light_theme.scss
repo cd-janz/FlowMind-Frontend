@@ -1,0 +1,36 @@
+html.light {
+  --bg: 249, 250, 251;
+  --surface: 255, 255, 255;
+  --shadow: 216, 220, 224;
+  --border: 226, 230, 234;
+
+  --text: 31, 41, 55;
+  --text-focus: 17, 24, 39;
+  --text-disabled: 156, 163, 175;
+  --text-ghost: 209, 213, 219;
+
+  --primary: 79, 129, 209;
+  --primary-focus: 58, 107, 191;
+  --primary-active: 80, 127, 188;
+  --primary-disabled: 174, 196, 230;
+
+  --danger: 214, 103, 103;
+  --danger-focus: 192, 87, 87;
+  --danger-active: 206, 108, 108;
+  --danger-disabled: 232, 179, 179;
+
+  --warning: 229, 185, 92;
+  --warning-focus: 216, 167, 72;
+  --warning-active: 223, 177, 90;
+  --warning-disabled: 242, 219, 164;
+
+  --success: 99, 179, 135;
+  --success-focus: 74, 154, 110;
+  --success-active: 94, 168, 128;
+  --success-disabled: 184, 222, 201;
+
+  --info: 98, 183, 196;
+  --info-focus: 75, 158, 172;
+  --info-active: 90, 173, 185;
+  --info-disabled: 186, 220, 225;
+}
