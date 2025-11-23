@@ -1,0 +1,17 @@
+button{
+  outline: none;
+  border: 1px solid rgb(var(--primary-focus));
+  border-radius: 12px;
+  height: 40px;
+  width: 100%;
+  text-transform: capitalize;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.125rem;
+  background: rgb(var(--primary));
+  color: rgb(var(--surface));
+  &:hover{
+    cursor: pointer;
+    background: rgb(var(--primary-focus));
+  }
+}

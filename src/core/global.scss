@@ -1,4 +1,5 @@
 @use "src/core/styles/light_theme.scss";
+@use "src/core/styles/fonts.scss";
 
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
@@ -133,4 +134,16 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+body {
+  font-family: 'Lora', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Jost', sans-serif;
+}
+
+.special-title {
+  font-family: 'Playfair Display', serif;
 }

@@ -1,0 +1,47 @@
+@keyframes intro {
+  0%{
+    top: -100px;
+  }
+  25%{
+    top: 15px;
+  }
+  75%{
+    top: 15px;
+  }
+  100%{
+    top: -100px;
+  }
+}
+.toaster-container{
+  position: fixed;
+  z-index: 50;
+  width: 340px;
+  min-height: 100px;
+  height: fit-content;
+  border: 1px solid;
+  right: 15px;
+  top: 15px;
+  border-radius: 12px;
+  padding: 5px;
+  animation: intro 3s ease-in-out;
+  &.info{
+    background: rgba(226, 242, 253, 0.9);
+    border-color: rgb(var(--info-focus));
+    color: rgba(var(--primary-focus));
+  }
+}
+.toaster_content{
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+}
+.toaster_content-text{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.icon{
+  width: 25px;
+  height: 25px;
+  align-self: center;
+  justify-self: center;
+}

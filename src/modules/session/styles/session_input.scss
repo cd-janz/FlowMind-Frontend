@@ -1,0 +1,25 @@
+.input-container{
+  width: 100%;
+  position: relative;
+  padding-top: 5px;
+  >label{
+    position: absolute;
+    font-weight: lighter;
+    font-size: 0.875rem;
+    font-style: italic;
+    left: 20px;
+    top: -3px;
+    text-transform: capitalize;
+    background: rgb(var(--surface));
+    z-index: 1;
+  }
+  >input{
+    width: 100%;
+    outline: none;
+    border: 1px solid rgba(var(--border), 0.9);
+    height: 2.25rem;
+    border-radius: 10px;
+    padding-left: 5px;
+    box-sizing: border-box;
+  }
+}

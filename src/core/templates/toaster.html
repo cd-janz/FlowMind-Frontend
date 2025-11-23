@@ -1,0 +1,17 @@
+@if (toaster()){
+  <div class="toaster-container {{toaster()?.type}}">
+    <div class="toaster_content">
+      <figure class="icon">
+        @if (toaster()?.type === "info"){
+          <fm-info-icon/>
+        }
+      </figure>
+      <div class="toaster_content-text">
+        <h2>{{toaster()?.title}}</h2>
+        <p>{{toaster()?.message}}</p>
+      </div>
+    </div>
+    <div class="toaster-actions">
+    </div>
+  </div>
+}

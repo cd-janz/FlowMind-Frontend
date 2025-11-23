@@ -1,0 +1,35 @@
+.register{
+  box-sizing: border-box;
+  padding: 20px 20px 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  >h2{
+    font-size: 2.25rem;
+    font-weight: bold;
+    font-style: italic;
+  }
+  >form{
+    display: grid;
+    gap: 20px;
+    >div{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+  }
+  >button{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    border: none;
+    outline: none;
+    background: none;
+    text-transform: capitalize;
+    cursor: pointer;
+    &:hover{
+      color: rgb(var(--primary-focus));
+    }
+  }
+}

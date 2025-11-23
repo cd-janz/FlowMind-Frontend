@@ -1,2 +1,35 @@
 <fm-session-ly>
+  <div login class="login">
+    <h2>Good to see you again!</h2>
+    <form>
+      <fm-session-input label="email" type="email" (valueChange)="handleEmail($event)"/>
+      <fm-session-input label="password" type="password" (valueChange)="handlePassword($event)"/>
+      <div class="addition">
+        <fm-checkbox label="remember?" (hasChange)="handleRememberMe()"/>
+        <span style="text-align: right; text-transform: capitalize">forgotten your password?</span>
+      </div>
+      <fm-session-button label="login" (onClick)="handleSubmit()" />
+    </form>
+    <button (click)="moveFloat()" class="register-button">don't you have an account?</button>
+  </div>
+  <div register class="register">
+    <h2>Thank you for trusting us!</h2>
+    <form>
+      <div>
+        <fm-session-input label="first name"/>
+        <fm-session-input label="last name"/>
+      </div>
+      <fm-session-input label="email" type="email"/>
+      <div>
+        <fm-session-input label="password" type="password"/>
+        <fm-session-input label="verify password" type="password"/>
+      </div>
+      <div>
+        <fm-session-input label="phone number"/>
+        <fm-session-input label="username"/>
+      </div>
+      <fm-session-button label="register" />
+    </form>
+    <button (click)="moveFloat()" class="login-button">do you have an account already?</button>
+  </div>
 </fm-session-ly>

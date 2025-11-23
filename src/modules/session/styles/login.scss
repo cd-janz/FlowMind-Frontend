@@ -1,0 +1,44 @@
+.login{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 20px 0 20px 20px;
+  position: relative;
+  box-sizing: border-box;
+
+  .addition{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    font-size: 0.875rem;
+    align-items: center;
+    font-weight: 400;
+  }
+  >h2{
+    font-size: 2.25rem;
+    font-weight: bold;
+    font-style: italic;
+  }
+  >form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 1rem;
+  }
+  >.register-button{
+    position: absolute;
+    bottom: 15px;
+    right: 0;
+    outline: none;
+    border: none;
+    background: none;
+    text-transform: capitalize;
+    cursor: pointer;
+    &:hover{
+      color: rgb(var(--primary));
+    }
+  }
+}
