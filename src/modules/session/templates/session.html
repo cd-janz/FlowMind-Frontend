@@ -2,10 +2,10 @@
   <div login class="login">
     <h2>Good to see you again!</h2>
     <form>
-      <fm-session-input label="email" type="email" (valueChange)="handleEmail($event)"/>
-      <fm-session-input label="password" type="password" (valueChange)="handlePassword($event)"/>
+      <fm-session-input label="email" type="email" (valueChange)="handleLogin($event, 'email')"/>
+      <fm-session-input label="password" type="password" (valueChange)="handleLogin($event, 'password')"/>
       <div class="addition">
-        <fm-checkbox label="remember?" (hasChange)="handleRememberMe()"/>
+        <div></div>
         <span style="text-align: right; text-transform: capitalize">forgotten your password?</span>
       </div>
       <fm-session-button label="login" (onClick)="handleSubmit()" />
@@ -16,19 +16,16 @@
     <h2>Thank you for trusting us!</h2>
     <form>
       <div>
-        <fm-session-input label="first name"/>
-        <fm-session-input label="last name"/>
+        <fm-session-input label="first name" (valueChange)="handleRegister($event, 'name')"/>
+        <fm-session-input label="last name" (valueChange)="handleRegister($event, 'lastName')"/>
       </div>
-      <fm-session-input label="email" type="email"/>
+      <fm-session-input label="email" type="email" (valueChange)="handleRegister($event, 'email')"/>
       <div>
-        <fm-session-input label="password" type="password"/>
-        <fm-session-input label="verify password" type="password"/>
+        <fm-session-input label="password" type="password" (valueChange)="handleRegister($event, 'password')"/>
+        <fm-session-input label="username" (valueChange)="handleRegister($event, 'username')"/>
       </div>
-      <div>
-        <fm-session-input label="phone number"/>
-        <fm-session-input label="username"/>
-      </div>
-      <fm-session-button label="register" />
+      <fm-session-input label="phone number" (valueChange)="handleRegister($event, 'phone')"/>
+      <fm-session-button label="register" (onClick)="handleRegisterSubmit()" />
     </form>
     <button (click)="moveFloat()" class="login-button">do you have an account already?</button>
   </div>

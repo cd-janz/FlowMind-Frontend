@@ -1,6 +1,7 @@
 import axios, {AxiosInstance} from "axios";
 import {environment} from '@core/environments/environment';
 import {Injectable} from '@angular/core';
+import GeneralResponse from '@core/types/GeneralResponse';
 
 @Injectable({providedIn: 'root'})
 export default class RequestService{
@@ -14,6 +15,20 @@ export default class RequestService{
     })
   }
   async withoutAuthPost<T>(route: string, data: any){
-    return this.agent.post(route, data);
+    const res = await this.agent.post(route, data);
+    if(res.status >= 400 && res.status < 500){
+      return {
+        error: true,
+        message: res.data.message,
+        description: res.data.description,
+        data: res.data.data
+      } as GeneralResponse<any>;
+    }
+    return {
+      error: false,
+      message: res.data.message,
+      description: res.data.description,
+      data: res.data.data
+    } as GeneralResponse<T>;
   }
 }

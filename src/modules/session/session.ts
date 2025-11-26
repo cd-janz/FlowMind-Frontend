@@ -4,12 +4,16 @@ import SessionInputComponent from './components/SessionInput';
 import SessionButtonComponent from './components/SessionButton';
 import LoginRequestDTO from './types/LoginRequestDTO';
 import RequestService from '@core/services/request';
-import CheckboxComponent from '@core/components/Checkbox';
 import LoaderService from '@core/services/loader';
 import ToasterService from '@core/services/toaster';
+import {UserWithToken} from '@core/types/User';
+import UserService from '@core/services/user';
+import RegisterRequestDTO from './types/RegisterRequestDTO';
+import {Router} from '@angular/router';
+import {routes} from '@core/configs/app.routes';
 
 @Component({
-  imports: [SessionLayout, SessionInputComponent, SessionButtonComponent, CheckboxComponent],
+  imports: [SessionLayout, SessionInputComponent, SessionButtonComponent],
   selector: "fm-session",
   templateUrl: "./templates/session.html",
   styleUrls: ["./styles/login.scss", "./styles/register.scss"],
@@ -20,20 +24,26 @@ export default class SessionView {
   private _loader: LoaderService;
   private _toaster: ToasterService;
   private _loginData: LoginRequestDTO = {} as LoginRequestDTO;
-  private _remember: boolean = false;
-  constructor(request: RequestService, loader: LoaderService, toaster: ToasterService) {
+  private _register: RegisterRequestDTO = {} as RegisterRequestDTO;
+  constructor(
+    request: RequestService, loader: LoaderService, toaster: ToasterService,
+    private readonly userService: UserService, private readonly router: Router
+  ) {
     this._request = request;
     this._loader = loader;
     this._toaster = toaster;
   }
-  handleEmail(value: string){
-    this._loginData.email = value;
+  handleLogin(value: string, field: string){
+    if(field === 'password') this._loginData.password = value;
+    else this._loginData.email = value;
   }
-  handlePassword(value: string){
-    this._loginData.password = value;
-  }
-  handleRememberMe() {
-    this._remember = !this._remember;
+  handleRegister(value: string, field: string){
+    if(field === 'name') this._register.firstName = value;
+    else if(field === 'lastName') this._register.lastName = value;
+    else if(field === 'email') this._register.email = value;
+    else if(field === 'password') this._register.password = value;
+    else if(field === 'phone') this._register.phoneNumber = value;
+    else this._register.username = value;
   }
   async handleSubmit(){
     this._loader.subscribeToLoader();
@@ -54,11 +64,37 @@ export default class SessionView {
       })
       return ;
     }
-    const response = await this._request.withoutAuthPost("/public/login", this._loginData);
-    if(response.status >= 400){
-      console.error(response.statusText);
+    const response = await this._request.withoutAuthPost<UserWithToken>("/public/login", this._loginData);
+    if(response.error) {
+      this._loader.removeLoaderSubscription();
+      this._toaster.add({type: "error", title: response.message, message: response.description, code: "LOGINBERROR"})
+      return;
+    }
+    const data = response.data as UserWithToken;
+    await this.userService.saveUser(data);
+    this._loader.removeLoaderSubscription();
+  }
+  async handleRegisterSubmit(){
+    this._loader.subscribeToLoader();
+    if(!this._register.firstName || !this._register.lastName || !this._register.email || !this._register.phoneNumber || !this._register.password){
+      this._toaster.add({
+        code: "REGISFERROR",
+        title: "Missing Fields",
+        message: "You can't submit without fill all fields",
+        type: "error"
+      })
+    }
+    const response = await this._request.withoutAuthPost<null>("/public/create-user", this._register);
+    if(response.error) {
+      this._toaster.add({type: "error", title: response.message, message: response.description, code: "REGISBERROR"})
+      this._loader.removeLoaderSubscription();
+      return;
     }
     this._loader.removeLoaderSubscription();
+    this._toaster.add({type: "success", title: response.message, message: response.description, code: "REGISBSUCCESS"})
+    setTimeout(()=> {
+      window.location.reload();
+    }, 3000)
   }
   moveFloat(){
     const element = document.getElementById("float");
